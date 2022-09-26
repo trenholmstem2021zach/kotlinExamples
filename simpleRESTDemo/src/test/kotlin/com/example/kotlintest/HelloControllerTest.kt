@@ -13,10 +13,17 @@ class HelloControllerTest(@Autowired val mockMvc: MockMvc) {
 
 
  @Test
-    fun helloWorks() {
+    fun `hello with or with name success`() {
 
         mockMvc.perform(get("/?name=zac"))
         .andExpect(status().isOk)
     }
+
+@Test
+    fun `Bad URL should fail not found condition`() {
+
+            mockMvc.perform(get("/badurl?name=zac"))
+            .andExpect(status().isNotFound)
+        }
 
     }
